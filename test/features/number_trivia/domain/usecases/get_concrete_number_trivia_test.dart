@@ -5,10 +5,10 @@ import 'package:number_trivia/features/number_trivia/domain/entities/number_triv
 import 'package:number_trivia/features/number_trivia/domain/repositories/number_trivia_repository.dart';
 import 'package:number_trivia/features/number_trivia/domain/usecases/get_concrete_number_trivia.dart';
 
-class MockNumberTriviaRepository extends Mock implements NumberTriviaRepository {}
+class _MockNumberTriviaRepository extends Mock implements NumberTriviaRepository {}
 
 void main() {
-  final mockNumberTriviaRepository = MockNumberTriviaRepository();
+  final mockNumberTriviaRepository = _MockNumberTriviaRepository();
   final useCase = GetConcreteNumberTrivia(mockNumberTriviaRepository);
 
   const tNumber = 1;
@@ -20,7 +20,7 @@ void main() {
       when(mockNumberTriviaRepository.getConcreteNumberTrivia(any))
           .thenAnswer((_) async => const Right(tNumberTrivia));
 
-      final result = await useCase.execute(number: tNumber);
+      final result = await useCase.call(const Param(number: tNumber));
       print(result);
       print(const Right(tNumberTrivia));
 
