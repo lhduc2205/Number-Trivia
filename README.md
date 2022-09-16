@@ -1,4 +1,4 @@
-# number_trivia
+# Number trivia
 
 Project for learning clean architecture
 
