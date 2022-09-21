@@ -6,15 +6,13 @@
 import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:number_trivia/core/network/network_info.dart' as _i7;
+import 'package:number_trivia/core/network/network_info.dart' as _i6;
 import 'package:number_trivia/features/number_trivia/data/datasources/number_trivia_local_data_source.dart'
     as _i5;
 import 'package:number_trivia/features/number_trivia/data/datasources/number_trivia_remote_data_source.dart'
     as _i3;
 import 'package:number_trivia/features/number_trivia/data/models/number_trivia_model.dart'
     as _i2;
-import 'package:number_trivia/features/number_trivia/domain/entities/number_trivia.dart'
-    as _i6;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -75,17 +73,18 @@ class MockNumberTriviaLocalDataSource extends _i1.Mock
                       this, Invocation.method(#getLastNumberTrivia, []))))
           as _i4.Future<_i2.NumberTriviaModel>);
   @override
-  _i4.Future<void> cacheNumberTrivia(_i6.NumberTrivia? triviaToCache) => (super
-          .noSuchMethod(Invocation.method(#cacheNumberTrivia, [triviaToCache]),
+  _i4.Future<void> cacheNumberTrivia(_i2.NumberTriviaModel? triviaToCache) =>
+      (super.noSuchMethod(
+              Invocation.method(#cacheNumberTrivia, [triviaToCache]),
               returnValue: _i4.Future<void>.value(),
               returnValueForMissingStub: _i4.Future<void>.value())
-      as _i4.Future<void>);
+          as _i4.Future<void>);
 }
 
 /// A class which mocks [NetworkInfo].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockNetworkInfo extends _i1.Mock implements _i7.NetworkInfo {
+class MockNetworkInfo extends _i1.Mock implements _i6.NetworkInfo {
   MockNetworkInfo() {
     _i1.throwOnMissingStub(this);
   }
