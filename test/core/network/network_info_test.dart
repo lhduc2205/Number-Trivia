@@ -14,18 +14,34 @@ void main() {
   NetworkInfoImpl networkInfoImpl = NetworkInfoImpl(mockConnectivity);
 
   group('Internet is connected.', () {
-    test('should forward the call to Connectivity has wifi connection',
-        () async {
-      when(mockConnectivity.checkConnectivity())
-          .thenAnswer((_) async => ConnectivityResult.wifi);
-      // when(() => mockConnectivity.checkConnectivity())
-      //     .thenAnswer((_) async => ConnectivityResult.wifi);
-      //
-      // final result = await networknfoImpl.isConnected;
-      // print(result);
+    test(
+      'should forward the call to Connectivity has wifi connection.',
+      () async {
+        const tHasInternetConnection = true;
+        when(mockConnectivity.checkConnectivity())
+            .thenAnswer((_) async => ConnectivityResult.wifi);
 
-      // verify(mockConnectivity.checkConnectivity());
-      expect(true, true);
-    });
+        final result = await networkInfoImpl.isConnected;
+
+        verify(mockConnectivity.checkConnectivity());
+        expect(result, tHasInternetConnection);
+      },
+    );
+  });
+
+  group('Internet is disconnected.', () {
+    test(
+      'should forward the call to Connectivity has lost connection.',
+      () async {
+        const tHasInternetConnection = false;
+        when(mockConnectivity.checkConnectivity())
+            .thenAnswer((_) async => ConnectivityResult.none);
+
+        final result = await networkInfoImpl.isConnected;
+
+        verify(mockConnectivity.checkConnectivity());
+        expect(result, tHasInternetConnection);
+      },
+    );
   });
 }
