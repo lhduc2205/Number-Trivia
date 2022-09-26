@@ -8,7 +8,7 @@ part 'number_trivia_event.dart';
 part 'number_trivia_state.dart';
 
 class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
-  NumberTriviaBloc() : super(NumberTriviaInitial()) {
+  NumberTriviaBloc() : super(Loading()) {
     on<NumberTriviaEvent>((event, emit) {
       // TODO: implement event handler
     });
