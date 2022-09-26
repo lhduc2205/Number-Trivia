@@ -11,7 +11,7 @@ class Empty extends NumberTriviaState {}
 class Loading extends NumberTriviaState {}
 
 class Loaded extends NumberTriviaState {
-  final NumberTriviaEvent trivia;
+  final NumberTrivia trivia;
 
   Loaded({required this.trivia});
 
