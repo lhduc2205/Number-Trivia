@@ -34,28 +34,57 @@ void main() {
     const tNumberParsed = 1;
     const tNumberTrivia = NumberTrivia(text: 'Test text', number: 1);
 
-    test(
-        'should call the InputConverter to validate and convert the string to an unsigned integer',
-        () async {
+    void setUpMockInputConverterSuccess() {
       when(mockInputConverter.stringToUnsignedInteger(tNumberString))
           .thenReturn(const Right(tNumberParsed));
+    }
 
-      bloc.add(GetTriviaForConcreteNumber(tNumberString));
-      await untilCalled(
-          mockInputConverter.stringToUnsignedInteger(tNumberString));
-      verify(mockInputConverter.stringToUnsignedInteger(tNumberString));
-    });
+    // test(
+    //     'should call the InputConverter to validate and convert the string to an unsigned integer',
+    //     () async {
+    //   setUpMockInputConverterSuccess();
+    //
+    //   bloc.add(GetTriviaForConcreteNumber(tNumberString));
+    //   await untilCalled(
+    //       mockInputConverter.stringToUnsignedInteger(tNumberString));
+    //   verify(mockInputConverter.stringToUnsignedInteger(tNumberString));
+    // });
 
-    test('should emit [Error] when the input is invalid', () async {
-      when(mockInputConverter.stringToUnsignedInteger(tNumberString))
-          .thenReturn(Left(InvalidInputFailure()));
-      final expected = [
-        Empty(),
-        Error(message: INVALUD_INPUT_FAILURE_MESSAGE),
-      ];
-      expectLater(bloc.state, emitsInOrder(expected));
-      bloc.add(GetTriviaForConcreteNumber(tNumberString));
+    // test('should emit [Error] when the input is invalid', () async {
+    //   when(mockInputConverter.stringToUnsignedInteger(tNumberString))
+    //       .thenReturn(Left(InvalidInputFailure()));
+    //   final expected = [
+    //     Empty(),
+    //     Error(message: INVALUD_INPUT_FAILURE_MESSAGE),
+    //   ];
+    //   expectLater(bloc.state, emitsInOrder(expected));
+    //   bloc.add(GetTriviaForConcreteNumber(tNumberString));
+    // });
 
-    });
+    // test('should get data from the concrete use case', () async {
+    //   setUpMockInputConverterSuccess();
+    //   when(mockGetConcreteNumberTrivia(const Param(number: tNumberParsed)))
+    //       .thenAnswer((_) async => const Right(tNumberTrivia));
+    //   bloc.add(GetTriviaForConcreteNumber(tNumberString));
+    //   await untilCalled(
+    //       mockGetConcreteNumberTrivia(const Param(number: tNumberParsed)));
+    //   verify(
+    //       mockGetConcreteNumberTrivia(const Param(number: tNumberParsed)));
+    // });
+    //
+    // test('should emit [Loading, Loaded] when data is gotten successfully.',
+    //     () async {
+    //   setUpMockInputConverterSuccess();
+    //   when(mockGetConcreteNumberTrivia(const Param(number: tNumberParsed)))
+    //       .thenAnswer((_) async => const Right(tNumberTrivia));
+    //
+    //   final expected = [
+    //     Empty(),
+    //     Loading(),
+    //     Loaded(trivia: tNumberTrivia),
+    //   ];
+    //   expectLater(bloc.state, emitsInOrder(expected));
+    //   bloc.add(GetTriviaForConcreteNumber(tNumberString));
+    // });
   });
 }
